@@ -18,10 +18,18 @@ Icon.Default.mergeOptions({
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 
+<<<<<<< HEAD
+=======
+//Add the script tag to head here, so can use API env variable
+>>>>>>> e607269... more resetting
 let hscript = document.createElement("script");
 hscript.setAttribute("src", `https://maps.googleapis.com/maps/api/js?key=${process.env.VUE_APP_GMAPS_API}&libraries=places`);
 document.head.appendChild(hscript);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e607269... more resetting
 new Vue({
   render: h => h(App),
 }).$mount('#app')

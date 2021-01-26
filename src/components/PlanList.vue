@@ -1,3 +1,9 @@
+<!-- 
+    This component is not in use. I intended on having a a list component beside
+    the filter options so that a user could scroll through the recently made 
+    applications and then have them highlighted on the map.
+ -->
+
 <template>
     <div class="card plan-list" style="width: 18rem;">
         <ul class="list-group list-group-flush">
