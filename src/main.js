@@ -14,15 +14,11 @@ Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
-
-//Add the script tag to head here, so can use API env variable
-let hscript = document.createElement("script");
-hscript.setAttribute("src", `https://maps.googleapis.com/maps/api/js?key=${process.env.VUE_APP_GMAPS_API}&libraries=places`);
-document.head.appendChild(hscript);
 
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+

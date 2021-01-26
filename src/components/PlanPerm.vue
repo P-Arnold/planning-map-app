@@ -52,6 +52,7 @@
 
 <script>
     import axios from 'axios'
+    import $Scriptjs from 'scriptjs'
     import DubMap from "./DubMap.vue"
     // import PlanList from './PlanList.vue'
     export default {
@@ -100,8 +101,8 @@
             }
         },
         mounted() {
-            //Get data from api
-              axios.get("https://parnold-tech.com/flask/get/short/2020-05-27")
+            // Get data from api
+            axios.get("https://parnold-tech.com/flask/get/short/2020-05-27")
             .then((r)=>{
                 this.plan_apps = r.data.map(r=>{
                     // Add icon size as attribute, this was for hover effects that aren't used
@@ -110,25 +111,9 @@
                 })
             });
             // Set up Google Autocomplete
-            const google = window.google
-            const googleOptions = {
-                types: ['geocode'],
-                componentRestrictions: {country: 'ie'}
-            }
-            this.autocomplete = new google.maps.places.Autocomplete(
-            (this.$refs.autocomplete),googleOptions
-            );
-            // Listener for when a place is selected from the autocomplete
-            this.autocomplete.addListener('place_changed', () => {
-                let place = this.autocomplete.getPlace();
-                // let ac = place.address_components;
-                let lat = place.geometry.location.lat();
-                let lon = place.geometry.location.lng();
-                // Update PlanPerm data, which is passed as props to DubMap
-                this.updateMapProps(lat,lon);
-                // Once an address has been chosen, boolean for red marker
-                this.searched = true;
-            });
+            $Scriptjs(`https://maps.googleapis.com/maps/api/js?key=${process.env.VUE_APP_GMAPS_API}&libraries=places`, () => {
+                this.initMap()
+            })
         },
         computed: {
             //Computed value of applications, once all filters have been applied
@@ -137,6 +122,27 @@
             }
         },
         methods: {
+            initMap(){
+                const google = window.google
+                const googleOptions = {
+                    types: ['geocode'],
+                    componentRestrictions: {country: 'ie'}
+                }
+                this.autocomplete = new google.maps.places.Autocomplete(
+                (this.$refs.autocomplete),googleOptions
+                );
+                // Listener for when a place is selected from the autocomplete
+                this.autocomplete.addListener('place_changed', () => {
+                    let place = this.autocomplete.getPlace();
+                    // let ac = place.address_components;
+                    let lat = place.geometry.location.lat();
+                    let lon = place.geometry.location.lng();
+                    // Update PlanPerm data, which is passed as props to DubMap
+                    this.updateMapProps(lat,lon);
+                    // Once an address has been chosen, boolean for red marker
+                    this.searched = true;
+                });
+            },
             updateMapProps: function(lat,lon) {
                 this.mapCentre = [lat,lon];
             },
@@ -208,7 +214,7 @@
             mouseLeftPlan: function(index) {
                 console.log("MouseLeft",index)
                 // this.plan_apps[index].iconSize = this.normalIconSize;
-            },
+            }
         }
     }
 </script>

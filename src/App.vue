@@ -4,7 +4,6 @@
 <script>
 import PlanPerm from "./components/PlanPerm.vue";
 
-
 export default {
   name: 'App',
   components: {
