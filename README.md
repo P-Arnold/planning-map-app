@@ -12,7 +12,9 @@ and to become familiar with some of the relevant modern technologies.
 
 ## Demo
 
-Demo [Here](https://competent-jennings-57a7ec.netlify.app/) hosted on Netlify which accesses the AWS hosted parnold-tech.com API.
+**I have disbaled the api serving the web app and the Google autocoding, so much of the functionality is not present anymore**
+
+Demo [Here](https://competent-jennings-57a7ec.netlify.app/) hosted on Netlify which accesses the AWS hosted parnold-tech.com API. 
 
 ## Technologies
 
